@@ -23,6 +23,8 @@ Route::group(['prefix' => 'v1'], function(){
     //employee endpoints
     Route::group(['prefix' => 'employee'], function(){
 
+        Route::get('all', [\App\Http\Controllers\API\FetchController::class, 'fetchEmployees']);
+
         Route::post('register', [\App\Http\Controllers\API\EmployeeRegistration::class, 'register']);
         Route::post('verify-otp', [\App\Http\Controllers\API\EmployeeRegistration::class, 'verifyOtp']);
     
@@ -30,6 +32,8 @@ Route::group(['prefix' => 'v1'], function(){
 
     //employer enpoints
     Route::group(['prefix' => 'employer'], function(){
+
+        Route::get('all', [\App\Http\Controllers\API\FetchController::class, 'fetchEmployers']);
 
         Route::post('register', [\App\Http\Controllers\API\EmployerRegistration::class, 'register']);
         Route::post('verify-otp', [\App\Http\Controllers\API\EmployerRegistration::class, 'verifyOtp']);
