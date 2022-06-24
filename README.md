@@ -59,4 +59,4 @@ Next command is
 ## Valid API endpoints
 
 All the api endpoint and documentation is provided in a postman documentation here 
-documentation link 
+documentation link https://www.postman.com/orange-astronaut-492109/workspace/arm-test/overview
