@@ -1,64 +1,62 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## ARM Backend developemnt Assesment
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Ensure you have php installed on your machine or you are using Xampp Appache server which comes with PHP by default
+- Ensure you have composer installed on your machine aswell (composer in a php dependency manager just like npm in Node )
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Clone the repository `git clone <repo-url>`
 
-## Learning Laravel
+After cloning, 
+    
+    cd <into the project folder>
+    
+After that 
+    run this command to install all dependencies `composer install` 
+    this will also install laravel passport which we will use for our api authentication
+    
+## Setup 
+We need to setup up a database but for us to do that we have to create a `.env` file.
+Git ignores this file when files are pushed to github, so to create it 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+run this comman in your terminal `cp .env.example .env`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+This command will create a .env file and copy the content of .env.example to it.
+Don't worry editing the newly created .env file as all the right configuration are already preconfigured for you
 
-## Laravel Sponsors
+**Alternatively**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+You can manually create a `.env` file in the root directory and copy the content of `.env.example` into it.
 
-### Premium Partners
+## Create database
+In this project I  used mysql therefore we are going to setup a mysql database 
+Open `.env file` that you just created and locate the `DB_CONNECTION` section of the code
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+Ensure the database name is the same with one you created in your phpmyadmin otherwise change it to correspond with what you have in the .env file
+    
+#### Now lets create the database tables
+open your terminal make make sure you are inside the application root directory/folder
 
-## Contributing
+once that is done 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+run `php artisan migrate` to migrate your database tables.
 
-## Code of Conduct
+After the migration, the application is good to go, all you have to do is run `php artisan serve` to start up you local server and test out the API using postman or any API testing tool.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Let us configure my laravel passport for authentication
 
-## Security Vulnerabilities
+To configure our laravel passport we just need to run two commands
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`php artisan passport:install` this command will install the client secrects that passport uses for authentication
 
-## License
+Next command is 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+`php artisan passport:kyes` this command will create an oauth public and private keys
+
+
+## Valid API endpoints
+
+All the api endpoint and documentation is provided in a postman documentation here 
+documentation link 
