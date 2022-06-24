@@ -15,17 +15,11 @@ class CreateEmployersTable extends Migration
     {
         Schema::create('employers', function (Blueprint $table) {
             $table->id();
-            $table->string('surname');
-            $table->string('firstname');
-            $table->string('employer_name');
-            $table->string('email')->unique();
-            $table->string('mobile_no');
+            $table->string('user_id');
             $table->string('acct_no')->nullable()->unique();
+            $table->string('employer_name');
             $table->string('address');
             $table->string('state_of_location');
-            $table->string('otp');
-            $table->integer('reg_status')->default(0);
-            $table->integer('is_verified')->default(0);
             $table->timestamps();
         });
     }

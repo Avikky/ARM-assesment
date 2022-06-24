@@ -27,6 +27,14 @@ Route::group(['prefix' => 'v1'], function(){
 
         Route::post('register', [\App\Http\Controllers\API\EmployeeRegistration::class, 'register']);
         Route::post('verify-otp', [\App\Http\Controllers\API\EmployeeRegistration::class, 'verifyOtp']);
+
+        Route::post('resend-otp', [\App\Http\Controllers\API\EmployeeRegistration::class, 'resendOtp']);
+
+        Route::post('login', [\App\Http\Controllers\API\EmployeeRegistration::class, 'login']);
+
+        Route::middleware('auth:api')->group( function () {
+            Route::post('logout', [\App\Http\Controllers\API\EmployeeRegistration::class, 'logout']);
+        });
     
     });
 
@@ -38,7 +46,15 @@ Route::group(['prefix' => 'v1'], function(){
         Route::post('register', [\App\Http\Controllers\API\EmployerRegistration::class, 'register']);
         Route::post('verify-otp', [\App\Http\Controllers\API\EmployerRegistration::class, 'verifyOtp']);
 
+        Route::post('resend-otp', [\App\Http\Controllers\API\EmployeeRegistration::class, 'resendOtp']);
+
+        Route::post('login', [\App\Http\Controllers\API\EmployerRegistration::class, 'login']);
+
         Route::post('remitance', [\App\Http\Controllers\API\Remitance::class, 'remitance']);
+
+        Route::middleware('auth:api')->group( function () {
+            Route::post('logout', [\App\Http\Controllers\API\EmployerRegistration::class, 'logout']);
+        });
     
     });
 

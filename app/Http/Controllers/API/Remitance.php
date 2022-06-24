@@ -34,7 +34,7 @@ class Remitance extends Controller
         $transaction->employer_id = $request->employer_id;
         $transaction->acct_id = $request->employee_account_no;
         $transaction->amount = $request->amount;
-        $transaction->trans_type = 1; // one is credit transaction while 0 is debit transaction
+        $transaction->trans_type = 1; // 1 is credit transaction while 0 is debit transaction
 
         $transaction->save();
 

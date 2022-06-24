@@ -15,11 +15,8 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('surname');
-            $table->string('firstname');
+            $table->string('user_id');
             $table->string('employer_code');
-            $table->string('email')->unique();
-            $table->string('mobile_no');
             $table->string('acct_no')->nullable()->unique();
             $table->string('address');
             $table->string('state_of_residence');
@@ -27,9 +24,6 @@ class CreateEmployeesTable extends Migration
             $table->string('nk_firstname');
             $table->string('nk_phone');
             $table->string('nk_email');
-            $table->string('otp');
-            $table->integer('reg_status')->default(0);
-            $table->integer('is_verified')->default(0);
             $table->timestamps();
         });
     }
