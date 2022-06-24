@@ -13,7 +13,7 @@ class Remitance extends Controller
     public function remitance(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'employer_id' => 'required|integer'
+            'employer_id' => 'required|integer',
             'employee_account_no' => 'required|string',
             'amount' => 'required|integer',
         ]);
@@ -22,7 +22,7 @@ class Remitance extends Controller
             return response()->json(['success' => false, 'Validation Error.' => $validator->errors()]);
         }
 
-        $employee = Employee::find($request->account_no);
+        $employee = Employee::where('acct_no', $request->employee_account_no)->first();
 
         if($employee == null){
             return response()->json(['success' => false, 'message' => 'employee does not exist']);
@@ -32,7 +32,7 @@ class Remitance extends Controller
 
         $transaction->employee_id = $employee->id;
         $transaction->employer_id = $request->employer_id;
-        $transaction->acct_no = $request->employee_account_no;
+        $transaction->acct_id = $request->employee_account_no;
         $transaction->amount = $request->amount;
         $transaction->trans_type = 1; // one is credit transaction while 0 is debit transaction
 

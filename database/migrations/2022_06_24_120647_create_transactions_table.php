@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('employer_id');
             $table->integer('trans_type');
             $table->string('amount');
-            $table->integer('acct_id');
+            $table->string('acct_id');
             $table->timestamps();
         });
     }

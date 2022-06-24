@@ -17,7 +17,7 @@ class EmployeeRegistration extends Controller
             'surname' => 'required|string',
             'firstname' => 'required|string',
             'employer_code' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:employees',
             'mobile_no' => 'required|min:11',
             'state_of_residence' => 'required|string',
             'address' => 'required|string',
@@ -87,11 +87,15 @@ class EmployeeRegistration extends Controller
             return response()->json(['success' => false, 'message' => 'User does not exist']);
         }
 
+        if($employee->is_verified == 1){
+            return response()->json(['success' => false, 'message' => 'oops your account is already verified proceed to login']);
+        }
+
         //expiring otp
 
-        // if($employee->otp < Carbon::now()){
-
-        // }
+        if(Carbon::now() > $employee->expires_at){
+            return response()->json(['success' => false, 'message' => 'otp token has expired']);
+        }
 
         if($employee->otp !== $request->otp){
             return response()->json(['success' => false, 'message' => 'invalid otp']);
@@ -102,9 +106,8 @@ class EmployeeRegistration extends Controller
         $employee->acct_no = $accountNo;
         $employee->is_verified = 1;
         $employee->reg_status = 1; //Employee reg_status 1 is active while default is 0 = pending
-        $employee->otp = null;
 
-        $$employee->save();
+        $employee->save();
 
 
         return response()->json(['success' => true, 'message' => $accountNo]);
