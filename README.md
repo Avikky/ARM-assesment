@@ -4,8 +4,8 @@
 
 ## Installation
 
-- Ensure you have php installed on your machine or you are using Xampp Appache server which comes with PHP by default
-- Ensure you have composer installed on your machine aswell (composer in a php dependency manager just like npm in Node )
+- Ensure you have php installed on your machine or you can use Xampp Appache server which comes with PHP by default
+- Ensure you have composer installed on your machine aswell (composer is a php dependency manager for PHP just like npm in Node )
 
 Clone the repository `git clone <repo-url>`
 
@@ -18,13 +18,13 @@ After that
     this will also install laravel passport which we will use for our api authentication
     
 ## Setup 
-We need to setup up a database but for us to do that we have to create a `.env` file.
-Git ignores this file when files are pushed to github, so to create it 
+We need to setup up a database but for us to do that we need to create a `.env` file.
+Git ignores the .env file when files are pushed to github, so to create it 
 
 run this comman in your terminal `cp .env.example .env`
 
 This command will create a .env file and copy the content of .env.example to it.
-Don't worry editing the newly created .env file as all the right configuration are already preconfigured for you
+Don't worry editing the newly created .env file as all the neccessary configuration are already preconfigured for you
 
 **Alternatively**
 
@@ -32,9 +32,9 @@ You can manually create a `.env` file in the root directory and copy the content
 
 ## Create database
 In this project I  used mysql therefore we are going to setup a mysql database 
-Open `.env file` that you just created and locate the `DB_CONNECTION` section of the code
+Open `.env file` that you just created and locate the `DB_DATABASE` section of the code
 
-Ensure the database name is the same with one you created in your phpmyadmin otherwise change it to correspond with what you have in the .env file
+Ensure the database name you created in your phpmyadmin is the same with the value of `DB_DATABASE` in your `.env`  file  otherwise change it to correspond with what you have in the `.env` file
     
 #### Now lets create the database tables
 open your terminal make make sure you are inside the application root directory/folder
@@ -49,14 +49,14 @@ After the migration, the application is good to go, all you have to do is run `p
 
 To configure our laravel passport we just need to run two commands
 
-`php artisan passport:install` this command will install the client secrects that passport uses for authentication
+`php artisan passport:install` this command will install the client secrets that passport uses for authentication
 
 Next command is 
 
-`php artisan passport:kyes` this command will create an oauth public and private keys
+`php artisan passport:kyes` this command will create an oauth public and private keys also used by passport to issue api tokens
 
 
 ## Valid API endpoints
 
-All the api endpoint and documentation is provided in a postman documentation here 
-documentation link https://www.postman.com/orange-astronaut-492109/workspace/arm-test/overview
+All the api endpoint and documentation is provided in a public postman workspace here 
+link to workspace https://www.postman.com/orange-astronaut-492109/workspace/arm-test/overview
