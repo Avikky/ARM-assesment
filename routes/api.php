@@ -50,10 +50,11 @@ Route::group(['prefix' => 'v1'], function(){
 
         Route::post('login', [\App\Http\Controllers\API\EmployerRegistration::class, 'login']);
 
-        Route::post('remitance', [\App\Http\Controllers\API\Remitance::class, 'remitance']);
-
+        
         Route::middleware('auth:api')->group( function () {
             Route::post('logout', [\App\Http\Controllers\API\EmployerRegistration::class, 'logout']);
+            
+            Route::post('remitance', [\App\Http\Controllers\API\Remitance::class, 'remitance']);
         });
     
     });
